@@ -306,3 +306,117 @@ function updateEmployeeManager() {
     });
   });
 }
+
+function viewRoles() {
+  db.findAllRoles()
+    .then(({ rows }) => {
+      let roles = rows;
+      console.log("\n");
+      console.table(roles);
+    })
+    .then(() => loadMainPrompts());
+}
+
+// Add a role
+function addRole() {
+  db.findAllDepartments().then(({ rows }) => {
+    let departments = rows;
+    const departmentChoices = departments.map(({ id, name }) => ({
+      name: name,
+      value: id,
+    }));
+
+    prompt([
+      {
+        name: "title",
+        message: "What is the name of the role?",
+      },
+      {
+        name: "salary",
+        message: "What is the salary of the role?",
+      },
+      {
+        type: "list",
+        name: "department_id",
+        message: "Which department does the role belong to?",
+        choices: departmentChoices,
+      },
+    ]).then((role) => {
+      db.createRole(role)
+        .then(() => console.log(`Added ${role.title} to the database`))
+        .then(() => loadMainPrompts());
+    });
+  });
+}
+
+// Delete a role
+function removeRole() {
+  db.findAllRoles().then(({ rows }) => {
+    let roles = rows;
+    const roleChoices = roles.map(({ id, title }) => ({
+      name: title,
+      value: id,
+    }));
+
+    prompt([
+      {
+        type: "list",
+        name: "roleId",
+        message:
+          "Which role do you want to remove? (Warning: This will also remove employees)",
+        choices: roleChoices,
+      },
+    ])
+      .then((res) => db.removeRole(res.roleId))
+      .then(() => console.log("Removed role from the database"))
+      .then(() => loadMainPrompts());
+  });
+}
+
+// View all deparments
+function viewDepartments() {
+  db.findAllDepartments()
+    .then(({ rows }) => {
+      let departments = rows;
+      console.log("\n");
+      console.table(departments);
+    })
+    .then(() => loadMainPrompts());
+}
+
+// Add a department
+function addDepartment() {
+  prompt([
+    {
+      name: "name",
+      message: "What is the name of the department?",
+    },
+  ]).then((res) => {
+    let name = res;
+    db.createDepartment(name)
+      .then(() => console.log(`Added ${name.name} to the database`))
+      .then(() => loadMainPrompts());
+  });
+}
+
+// Delete a department
+function removeDepartment() {
+  db.findAllDepartments().then(({ rows }) => {
+    let departments = rows;
+    const departmentChoices = departments.map(({ id, name }) => ({
+      name: name,
+      value: id,
+    }));
+
+    prompt({
+      type: "list",
+      name: "departmentId",
+      message:
+        "Which department would you like to remove? (Warning: This will also remove associated roles and employees)",
+      choices: departmentChoices,
+    })
+      .then((res) => db.removeDepartment(res.departmentId))
+      .then(() => console.log(`Removed department from the database`))
+      .then(() => loadMainPrompts());
+  });
+}
