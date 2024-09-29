@@ -1,4 +1,4 @@
-const pool = require("./connection");
+const pool = require("./connections");
 
 class DB {
   constructor() {}
