@@ -5,7 +5,7 @@ const db = require("./database");
 init();
 
 function init() {
-  const logoText = logo({ name: "Employee Manager" }).render();
+  const logoText = logo({ name: "Employee Tracker" }).render();
   console.log(logoText);
   loadMainPrompts();
 }
