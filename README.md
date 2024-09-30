@@ -13,6 +13,7 @@
   - [License](#license)
   - [Questions](#questions)
   - [Tutorial](#tutorial)
+  - [Screenshot](#screenshot)
 
 ## Description
 
@@ -20,7 +21,7 @@ An app that helps manage employees. It can be used to add, modify and remove emp
 
 ## Installation
 
-Ensure Node.js, pg, and inquirer are installed.
+Ensure Node.js, pg, asciiart-logo, and inquirer are installed.
 
 ## Usage
 
@@ -46,4 +47,8 @@ You can also find me on GitHub: [wolfleithold](https://github.com/wolfleithold).
 
 ## Tutorial
 
-[Video-tutorial](https://drive.google.com/file/d/1DTzHOHeqOgn2_MGzL5On7fc4H8DPRvpV/view)
+[Video-tutorial](https://drive.google.com/file/d/1EKj1gqu8EqavP0gNFZmO6g6BAde2eap3/view)
+
+## Screenshot
+
+![Project Screenshot](images/employeeTracker.png)
