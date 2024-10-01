@@ -4,8 +4,6 @@
 
 ## Table of Contents
 
-- [Employee Tracker](#employee-tracker)
-  - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
